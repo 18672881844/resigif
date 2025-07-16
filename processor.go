@@ -144,6 +144,16 @@ func (p *processor) calculateRatio(srcWidth, srcHeight int, width, height *int) 
 		}
 	}
 
+	if p.aspectRatio == WidthFirst {
+		heightRatio = widthRatio
+		*height = int(math.Round(floatSrcHeight * heightRatio))
+	}
+
+	if p.aspectRatio == HeightFirst {
+		widthRatio = heightRatio
+		*width = int(math.Round(floatSrcWidth * widthRatio))
+	}
+
 	return widthRatio, heightRatio
 }
 
